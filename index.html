@@ -6,9 +6,7 @@
     <title>LIVE18+ - Streaming Dewasa Eksklusif</title>
     <meta name="description" content="Live streaming dewasa 18+. Akses video hot, chat live dengan model, dan pengalaman private eksklusif.">
     <meta name="robots" content="noindex, nofollow">
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -50,7 +48,7 @@
             opacity: 1;
         }
 
-        .age-gate.hide-permanent {
+        .age-gate.hide {
             display: none;
         }
 
@@ -79,14 +77,14 @@
         .btn-enter { background: linear-gradient(135deg, #ff2a6d, #ff6a4b); border: none; padding: 14px 28px; border-radius: 50px; color: white; font-weight: bold; font-size: 16px; cursor: pointer; flex: 1; }
         .btn-leave { background: rgba(255,255,255,0.1); border: 1px solid #444; padding: 14px 20px; border-radius: 50px; color: #ccc; font-weight: bold; cursor: pointer; flex: 1; }
 
-        /* ========== POPUP 2: REGISTRASI / AKSES RUANG VIP (setelah age gate) ========== */
+        /* ========== POPUP 2: VIP REGISTRATION ========== */
         .vip-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.92);
+            background: rgba(0,0,0,0.95);
             backdrop-filter: blur(12px);
             z-index: 10001;
             display: flex;
@@ -161,7 +159,6 @@
             color: white;
             font-size: 15px;
             outline: none;
-            transition: 0.2s;
         }
 
         .input-group input:focus {
@@ -179,12 +176,7 @@
             font-weight: 800;
             font-size: 16px;
             cursor: pointer;
-            transition: 0.2s;
             margin-bottom: 16px;
-        }
-
-        .vip-btn:active {
-            transform: scale(0.97);
         }
 
         .benefit-list {
@@ -252,23 +244,24 @@
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.7);
             backdrop-filter: blur(8px);
-            padding: 6px 16px;
+            padding: 8px 20px;
             border-radius: 50px;
-            font-size: 12px;
+            font-size: 13px;
             color: #ffaa44;
             z-index: 10001;
-            font-weight: 500;
+            font-weight: 600;
             pointer-events: none;
             opacity: 0;
             transition: 0.3s;
+            white-space: nowrap;
         }
         .age-timer-hint.show {
             opacity: 1;
         }
 
-        /* Container untuk setiap slide video */
+        /* Video Slide Styles */
         .video-slide {
             position: relative;
             width: 100%;
@@ -326,7 +319,6 @@
             color: white;
             z-index: 10;
             box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .live-badge i { animation: pulse 1s infinite; }
@@ -503,10 +495,8 @@
             z-index: 1000;
             box-shadow: 0 5px 20px rgba(0,0,0,0.5);
             cursor: pointer;
-            animation: floatUp 0.5s ease;
             border: none;
         }
-        @keyframes floatUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .floating-text { font-weight: 800; font-size: 16px; color: white; }
         .floating-arrow { background: white; color: #ff2a6d; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
@@ -539,8 +529,8 @@
 </head>
 <body>
 
-<!-- POPUP 1: AGE GATE (Verifikasi Umur) -->
-<div class="age-gate" id="ageGate">
+<!-- POPUP 1: AGE GATE (Verifikasi Umur) - MULAI TERSEMBUNYI -->
+<div class="age-gate hide" id="ageGate">
     <div class="age-card">
         <div class="age-icon">🔞</div>
         <div class="age-title">Verifikasi Umur</div>
@@ -553,7 +543,7 @@
     </div>
 </div>
 
-<!-- POPUP 2: VIP Registration / Akses Ruang VIP -->
+<!-- POPUP 2: VIP Registration -->
 <div class="vip-modal" id="vipModal">
     <div class="vip-card">
         <div class="vip-title">VIPRoom</div>
@@ -584,27 +574,31 @@
 </div>
 
 <!-- Timer hint -->
-<div class="age-timer-hint" id="timerHint">🔞 Verifikasi umur dalam <span id="countdownSec">15</span> detik</div>
+<div class="age-timer-hint" id="timerHint">🔞 Verifikasi umur dalam <span id="countdownSec">0</span> detik</div>
 
-<!-- MAIN CONTENT (Video Slides) -->
+<!-- MAIN CONTENT -->
 <div id="app"></div>
+
+<!-- FLOATING CTA -->
+<button class="floating-cta" id="floatingCtaBtn" style="display: none;">
+    <span class="floating-text">🔥 AKSES RUANG VIP 🔥</span>
+    <span class="floating-arrow">→</span>
+</button>
 
 <script>
     // ==================== KONFIGURASI ====================
-    // SMARTLINK ADSTERRA (GANTI DENGAN LINK ANDA)
-    const SMARTLINK_URL = "https://oversightexcitement.com/ecpp2d2yf?key=780644cc073355ffdcb57a8c6dbbd9b4";
+    const SMARTLINK_URL = "https://grufffeelimitation.com/tuhj1ix3t7?key=f55f48b534300ecf289f9c7a6c61a532";
+    const DELAY_SECONDS = Math.floor(Math.random() * 11) + 10; // 10 - 20 detik
     
-    // Durasi delay sebelum popup verifikasi muncul (10-20 detik acak)
-    const DELAY_SECONDS = Math.floor(Math.random() * 11) + 10;
-    let ageGateTimer = null;
-    let countdownInterval = null;
     let isAgeVerified = false;
     let isVipAccessGranted = false;
+    let ageTimer = null;
+    let countdownInterval = null;
 
     // Data video slides
     const videos = [
         {
-            src: "https://cdn2.videy.co/sFNKDpDR1.mp4",
+            src: "https://cdn2.videy.co/l4u6huw91.mp4",
             username: "@malam_panas",
             followers: "128.5K",
             initialViewers: 3420,
@@ -612,7 +606,7 @@
             liveTitle: "🔥 Private Show"
         },
         {
-            src: "https://cdn2.videy.co/Vu60s5Pa1.mp4",
+            src: "https://cdn2.videy.co/TWBHBq0W1.mp4",
             username: "@dewi_malam",
             followers: "89.2K",
             initialViewers: 2710,
@@ -620,7 +614,31 @@
             liveTitle: "💋 Midnight Live"
         },
         {
-            src: "https://cdn2.videy.co/l4u6huw91.mp4",
+            src: "https://cdn2.videy.co/Vu60s5Pa1.mp4",
+            username: "@suka-horni",
+            followers: "74.1K",
+            initialViewers: 2710,
+            initialLikes: 9800,
+            liveTitle: "💋 Midnight Live"
+        },
+        {
+            src: "https://cdn2.videy.co/sFNKDpDR1.mp4",
+            username: "@dewi_colmek",
+            followers: "65.3K",
+            initialViewers: 2710,
+            initialLikes: 9800,
+            liveTitle: "💋 Midnight Live"
+        },
+        {
+            src: "https://cdn2.videy.co/u8T80u8s1.mp4",
+            username: "@ratu_masturbasi",
+            followers: "98.7K",
+            initialViewers: 2710,
+            initialLikes: 9800,
+            liveTitle: "💋 Midnight Live"
+        },
+        {
+            src: "https://cdn2.videy.co/qkRkDM9T1.mp4",
             username: "@sensasi_hot",
             followers: "205.3K",
             initialViewers: 5120,
@@ -656,27 +674,24 @@
         setTimeout(() => heart.remove(), 1000);
     }
 
-    // Redirect ke Smartlink
     function redirectToSmartlink() {
         window.open(SMARTLINK_URL, '_blank');
         showToast("🚀 Mengarahkan ke ruang VIP eksklusif...");
     }
 
-    // ========== POPUP 2: TAMPILKAN VIP MODAL ==========
+    // ========== TAMPILKAN VIP MODAL ==========
     function showVipModal() {
         const vipModal = document.getElementById('vipModal');
         const appEl = document.getElementById('app');
         vipModal.classList.add('show');
         if (appEl) appEl.classList.add('content-blur');
         
-        // Event untuk tombol di VIP Modal
         const vipAccessBtn = document.getElementById('vipAccessBtn');
         const skipVipBtn = document.getElementById('skipVipBtn');
         const saveFavVipBtn = document.getElementById('saveFavVipBtn');
         const loginVipBtn = document.getElementById('loginVipBtn');
         const usernameInput = document.getElementById('vipUsername');
         
-        // Buat handler sekali pakai
         const handleVipAccess = () => {
             const username = usernameInput.value.trim();
             if (username === "") {
@@ -687,18 +702,11 @@
             showToast(`✨ Selamat datang ${username}! Mengarahkan ke akses VIP...`);
             vipModal.classList.remove('show');
             if (appEl) appEl.classList.remove('content-blur');
-            // Tampilkan floating CTA setelah akses VIP
-            const floatingBtn = document.getElementById('floatingCtaBtn');
-            if (floatingBtn) floatingBtn.style.display = 'flex';
-            // Redirect ke smartlink setelah 1 detik (opsional, atau biarkan user klik floating)
-            setTimeout(() => {
-                redirectToSmartlink();
-            }, 1500);
+            document.getElementById('floatingCtaBtn').style.display = 'flex';
+            setTimeout(() => redirectToSmartlink(), 1000);
             
-            // Cleanup event
             vipAccessBtn.removeEventListener('click', handleVipAccess);
             skipVipBtn.removeEventListener('click', handleSkipVip);
-            saveFavVipBtn.removeEventListener('click', handleSaveFav);
             loginVipBtn.removeEventListener('click', handleLoginVip);
         };
         
@@ -707,12 +715,10 @@
             showToast("✅ Anda melanjutkan tanpa email, nikmati live!");
             vipModal.classList.remove('show');
             if (appEl) appEl.classList.remove('content-blur');
-            const floatingBtn = document.getElementById('floatingCtaBtn');
-            if (floatingBtn) floatingBtn.style.display = 'flex';
+            document.getElementById('floatingCtaBtn').style.display = 'flex';
             
             vipAccessBtn.removeEventListener('click', handleVipAccess);
             skipVipBtn.removeEventListener('click', handleSkipVip);
-            saveFavVipBtn.removeEventListener('click', handleSaveFav);
             loginVipBtn.removeEventListener('click', handleLoginVip);
         };
         
@@ -731,7 +737,84 @@
         loginVipBtn.addEventListener('click', handleLoginVip);
     }
 
-    // Render slide video
+    // ========== TAMPILKAN AGE GATE ==========
+    function showAgeGate() {
+        if (isAgeVerified) return;
+        const ageGate = document.getElementById('ageGate');
+        const appEl = document.getElementById('app');
+        
+        // Hapus class hide, tambah class show
+        ageGate.classList.remove('hide');
+        ageGate.classList.add('show');
+        if (appEl) appEl.classList.add('content-blur');
+        
+        // Hentikan timer hint
+        const timerHint = document.getElementById('timerHint');
+        timerHint.classList.remove('show');
+        if (countdownInterval) clearInterval(countdownInterval);
+        if (ageTimer) clearTimeout(ageTimer);
+    }
+
+    // ========== MULAI TIMER UNTUK AGE GATE ==========
+    function startAgeGateTimer() {
+        const timerHint = document.getElementById('timerHint');
+        const countdownSpan = document.getElementById('countdownSec');
+        let remaining = DELAY_SECONDS;
+        
+        countdownSpan.innerText = remaining;
+        timerHint.classList.add('show');
+        
+        countdownInterval = setInterval(() => {
+            if (isAgeVerified) {
+                clearInterval(countdownInterval);
+                timerHint.classList.remove('show');
+                return;
+            }
+            remaining--;
+            countdownSpan.innerText = remaining;
+            if (remaining <= 0) {
+                clearInterval(countdownInterval);
+                timerHint.classList.remove('show');
+                showAgeGate();
+            }
+        }, 1000);
+        
+        ageTimer = setTimeout(() => {
+            if (!isAgeVerified) {
+                showAgeGate();
+            }
+        }, DELAY_SECONDS * 1000);
+        
+        console.log(`Popup verifikasi akan muncul dalam ${DELAY_SECONDS} detik`);
+    }
+
+    // ========== AGE GATE EVENT HANDLERS ==========
+    const enterBtn = document.getElementById('enterBtn');
+    const leaveBtn = document.getElementById('leaveBtn');
+    
+    enterBtn.addEventListener('click', () => {
+        isAgeVerified = true;
+        
+        // Sembunyikan age gate
+        const ageGate = document.getElementById('ageGate');
+        ageGate.classList.remove('show');
+        ageGate.classList.add('hide');
+        
+        const appEl = document.getElementById('app');
+        if (appEl) appEl.classList.remove('content-blur');
+        
+        if (ageTimer) clearTimeout(ageTimer);
+        if (countdownInterval) clearInterval(countdownInterval);
+        
+        // Tampilkan VIP Modal setelah verifikasi
+        showVipModal();
+    });
+    
+    leaveBtn.addEventListener('click', () => {
+        window.location.href = "https://grufffeelimitation.com/tuhj1ix3t7?key=f55f48b534300ecf289f9c7a6c61a532";
+    });
+
+    // ========== RENDER VIDEO SLIDES ==========
     function buildSlides() {
         const container = document.getElementById('app');
         container.innerHTML = '';
@@ -814,18 +897,16 @@
     
     function attachEvents() {
         document.querySelectorAll('.like-action').forEach(btn => {
-            btn.addEventListener('click', (e) => {
+            btn.addEventListener('click', () => {
                 if (!isVipAccessGranted) {
                     showToast("🔞 Verifikasi umur & akses VIP terlebih dahulu!");
                     return;
                 }
                 const idx = parseInt(btn.getAttribute('data-idx'));
-                if (!isNaN(idx)) {
-                    currentLikeCounts[idx] += Math.floor(Math.random() * 8) + 2;
-                    document.getElementById(`like-${idx}`).innerText = formatNumber(currentLikeCounts[idx]);
-                    for(let i=0;i<3;i++) setTimeout(() => floatingHeart(), i*70);
-                    showToast(`❤️ +1 Suka untuk ${videos[idx].username}`);
-                }
+                currentLikeCounts[idx] += Math.floor(Math.random() * 8) + 2;
+                document.getElementById(`like-${idx}`).innerText = formatNumber(currentLikeCounts[idx]);
+                for(let i=0;i<3;i++) setTimeout(() => floatingHeart(), i*70);
+                showToast(`❤️ +1 Suka`);
             });
         });
         
@@ -939,8 +1020,8 @@
         setInterval(() => {
             if (!isVipAccessGranted) return;
             const activeSlide = getCurrentSlideIndex();
-            const msgs = ["🔥 mantap live nya!", "💜 seksi banget", "✨ aku suka", "🚀 gas terus", "❤️ dari aku", "🎉 mau private show dong"];
-            const randomUser = ["🐼 malam_liar", "💫 bintang_malam", "🍕 hot_pizza", "🎸 rocker_malam", "📷 hunter"];
+            const msgs = ["🔥 mantap live nya!", "💜 seksi banget", "✨ aku suka", "🚀 gas terus", "❤️ dari aku"];
+            const randomUser = ["🐼 malam_liar", "💫 bintang_malam", "🍕 hot_pizza", "🎸 rocker_malam"];
             const randMsg = msgs[Math.floor(Math.random() * msgs.length)];
             const randUser = randomUser[Math.floor(Math.random() * randomUser.length)];
             const chatDiv = document.getElementById(`chat-${activeSlide}`);
@@ -957,7 +1038,6 @@
     
     function getCurrentSlideIndex() {
         const slides = document.querySelectorAll('.video-slide');
-        const scrollTop = window.scrollY;
         for(let i=0; i<slides.length; i++) {
             const rect = slides[i].getBoundingClientRect();
             if(rect.top >= 0 && rect.top < window.innerHeight/2) return i;
@@ -996,7 +1076,6 @@
         slides.forEach((_, i) => {
             const dot = document.createElement('div');
             dot.className = 'dot';
-            dot.setAttribute('data-dot', i);
             indicator.appendChild(dot);
         });
         document.body.appendChild(indicator);
@@ -1009,110 +1088,10 @@
         });
     }
     
-    function initFloatingCta() {
-        const floatingBtn = document.getElementById('floatingCtaBtn');
-        floatingBtn.style.display = 'flex';
-        floatingBtn.addEventListener('click', () => {
-            if (!isVipAccessGranted) {
-                showToast("🔞 Verifikasi umur & akses VIP terlebih dahulu!");
-                return;
-            }
-            redirectToSmartlink();
-        });
-    }
-    
-    // ========== AGE GATE DENGAN DELAY ==========
-    function showAgeGate() {
-        if (isAgeVerified) return;
-        const ageGateEl = document.getElementById('ageGate');
-        const appEl = document.getElementById('app');
-        ageGateEl.classList.add('show');
-        if (appEl) appEl.classList.add('content-blur');
-        if (countdownInterval) clearInterval(countdownInterval);
-        const timerHint = document.getElementById('timerHint');
-        if (timerHint) timerHint.classList.remove('show');
-    }
-    
-    function startAgeGateTimer() {
-        const timerHint = document.getElementById('timerHint');
-        const countdownSpan = document.getElementById('countdownSec');
-        let remaining = DELAY_SECONDS;
-        countdownSpan.innerText = remaining;
-        timerHint.classList.add('show');
-        
-        countdownInterval = setInterval(() => {
-            if (isAgeVerified) {
-                clearInterval(countdownInterval);
-                timerHint.classList.remove('show');
-                return;
-            }
-            remaining--;
-            if (countdownSpan) countdownSpan.innerText = remaining;
-            if (remaining <= 0) {
-                clearInterval(countdownInterval);
-                timerHint.classList.remove('show');
-                showAgeGate();
-            }
-        }, 1000);
-        
-        ageGateTimer = setTimeout(() => {
-            if (!isAgeVerified) {
-                showAgeGate();
-            }
-        }, DELAY_SECONDS * 1000);
-    }
-    
-    // AGE GATE Handlers - Setelah verifikasi, langsung tampilkan VIP MODAL
-    const ageGateEl = document.getElementById('ageGate');
-    const enterBtn = document.getElementById('enterBtn');
-    const leaveBtn = document.getElementById('leaveBtn');
-    
-    enterBtn.addEventListener('click', () => {
-        isAgeVerified = true;
-        ageGateEl.classList.remove('show');
-        ageGateEl.classList.add('hide-permanent');
-        const appEl = document.getElementById('app');
-        if (appEl) appEl.classList.remove('content-blur');
-        if (ageGateTimer) clearTimeout(ageGateTimer);
-        if (countdownInterval) clearInterval(countdownInterval);
-        
-        // Setelah verifikasi umur, TAMPILKAN POPUP VIP MODAL
-        showVipModal();
-    });
-    
-    leaveBtn.addEventListener('click', () => {
-        window.location.href = "https://oversightexcitement.com/ecpp2d2yf?key=780644cc073355ffdcb57a8c6dbbd9b4";
-    });
-    
-    // Exit intent popup
-    let exitIntentShown = false;
-    document.addEventListener('mouseleave', (e) => {
-        if (e.clientY <= 0 && !exitIntentShown && isVipAccessGranted && document.getElementById('app').children.length > 0) {
-            exitIntentShown = true;
-            const exitPopup = document.createElement('div');
-            exitPopup.style.position = 'fixed';
-            exitPopup.style.top = '50%';
-            exitPopup.style.left = '50%';
-            exitPopup.style.transform = 'translate(-50%, -50%)';
-            exitPopup.style.background = 'linear-gradient(145deg, #1a1a2e, #0f0f1a)';
-            exitPopup.style.borderRadius = '30px';
-            exitPopup.style.padding = '25px';
-            exitPopup.style.zIndex = '10001';
-            exitPopup.style.border = '2px solid #ff2a6d';
-            exitPopup.style.width = '280px';
-            exitPopup.style.textAlign = 'center';
-            exitPopup.innerHTML = `<h3 style="color:#ff2a6d;">Jangan lewatkan!</h3><p style="margin:15px 0;">Akses VIP sedang promo terbatas</p><button id="exitCtaBtn" style="background:#ff2a6d; border:none; padding:12px 25px; border-radius:50px; color:white; font-weight:bold; width:100%;">🔥 Klaim Sekarang 🔥</button><button id="closeExitBtn" style="background:transparent; border:none; color:#aaa; margin-top:12px;">Tutup</button>`;
-            document.body.appendChild(exitPopup);
-            document.getElementById('exitCtaBtn')?.addEventListener('click', () => { redirectToSmartlink(); exitPopup.remove(); });
-            document.getElementById('closeExitBtn')?.addEventListener('click', () => exitPopup.remove());
-        }
-    });
-    
-    // ========== INISIALISASI ==========
+    // ========== INIT ==========
     buildSlides();
     initScrollIndicator();
     
-    // Floating CTA awal disembunyikan
     const floatingBtn = document.getElementById('floatingCtaBtn');
     floatingBtn.style.display = 'none';
     floatingBtn.addEventListener('click', () => {
@@ -1123,14 +1102,10 @@
         redirectToSmartlink();
     });
     
-    // Mulai timer untuk popup verifikasi (10-20 detik)
+    // Mulai timer untuk popup verifikasi
     startAgeGateTimer();
     
-    const style = document.createElement('style');
-    style.textContent = `html { scroll-snap-type: y mandatory; } body { overflow-y: scroll; }`;
-    document.head.appendChild(style);
-    
-    console.log(`Popup verifikasi akan muncul dalam ${DELAY_SECONDS} detik`);
+    console.log("Website siap, video berjalan. Popup verifikasi akan muncul dalam " + DELAY_SECONDS + " detik");
 </script>
 </body>
 </html>
