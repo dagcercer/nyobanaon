@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Dewasa18+ - Ruang VIP Eksklusif</title>
+    <meta name="description" content="Akses video dewasa terpanas, chat live dengan model, dan pengalaman private eksklusif. Verifikasi umur 18+ diperlukan.">
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0a0a0f 0%, #1a0a1a 100%);
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* Age Gate / Verifikasi Umur */
+        .age-gate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .age-gate.hide {
+            display: none;
+        }
+
+        .age-card {
+            background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+            max-width: 380px;
+            width: 85%;
+            padding: 40px 28px;
+            border-radius: 40px;
+            text-align: center;
+            border: 1px solid rgba(255,42,109,0.4);
+            box-shadow: 0 0 50px rgba(255,42,109,0.2);
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .age-icon {
+            font-size: 70px;
+            margin-bottom: 20px;
+        }
+
+        .age-title {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff2a6d, #ff6a4b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .age-warning {
+            color: #ffaa44;
+            font-size: 14px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .age-desc {
+            color: #aaa;
+            font-size: 13px;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+
+        .age-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .btn-enter {
+            background: linear-gradient(135deg, #ff2a6d, #ff6a4b);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            flex: 1;
+            transition: 0.2s;
+        }
+
+        .btn-leave {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #444;
+            padding: 14px 20px;
+            border-radius: 50px;
+            color: #ccc;
+            font-weight: bold;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .btn-enter:active, .btn-leave:active {
+            transform: scale(0.96);
+        }
+
+        /* Main Landing Page */
+        .landing-page {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 16px 100px;
+        }
+
+        .landing-page.show {
+            display: block;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 30px 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff2a6d, #ff6a4b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .badge-18 {
+            display: inline-block;
+            background: #ff2a6d;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 12px;
+            vertical-align: middle;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255,42,109,0.08);
+            border-radius: 50px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,42,109,0.2);
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #ff2a6d;
+        }
+
+        .hero p {
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+
+        /* CTA Utama (Tidak Bisa Dilewatkan) */
+        .cta-primary {
+            background: linear-gradient(135deg, #ff2a6d, #ff6a4b);
+            padding: 18px 35px;
+            border-radius: 60px;
+            display: inline-block;
+            font-weight: 800;
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(255,42,109,0.4);
+            transition: 0.2s;
+            cursor: pointer;
+            border: none;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(255,42,109,0.4);}
+            50% { transform: scale(1.03); box-shadow: 0 15px 40px rgba(255,42,109,0.6);}
+        }
+
+        .cta-primary:active {
+            transform: scale(0.98);
+        }
+
+        /* Countdown + Urgency */
+        .urgency-box {
+            background: rgba(0,0,0,0.6);
+            border-radius: 30px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+            border: 1px dashed #ff2a6d;
+        }
+
+        .countdown {
+            font-size: 28px;
+            font-weight: 800;
+            color: #ff2a6d;
+            font-family: monospace;
+            letter-spacing: 3px;
+        }
+
+        /* Benefit Grid */
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .benefit-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 25px 20px;
+            border-radius: 30px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+
+        .benefit-card i {
+            font-size: 45px;
+            color: #ff2a6d;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .benefit-card p {
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        /* Testimonial / Live Notification */
+        .live-notif {
+            background: rgba(0,0,0,0.5);
+            border-radius: 20px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 13px;
+            border-left: 4px solid #ff2a6d;
+        }
+
+        .notif-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            animation: slideIn 0.3s ease;
+        }
+
+        .notif-item:last-child {
+            border-bottom: none;
+        }
+
+        .notif-avatar {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #ff2a6d, #ff6a4b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .notif-text {
+            flex: 1;
+        }
+
+        .notif-name {
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .notif-action {
+            font-size: 11px;
+            color: #ffaa44;
+        }
+
+        /* Floating CTA (Tetap terlihat saat scroll) */
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            left: 16px;
+            right: 16px;
+            background: linear-gradient(135deg, #ff2a6d, #ff6a4b);
+            padding: 14px 20px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            cursor: pointer;
+            animation: floatUp 0.5s ease;
+            border: none;
+        }
+
+        @keyframes floatUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .floating-text {
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .floating-arrow {
+            background: white;
+            color: #ff2a6d;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 11px;
+            color: #555;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 40px;
+        }
+
+        /* Timer Progress */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #ff2a6d;
+            transition: width 0.1s linear;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 26px; }
+            .cta-primary { font-size: 18px; padding: 15px 25px; }
+            .countdown { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- AGE GATE (Verifikasi 18+) WAJIB -->
+<div class="age-gate" id="ageGate">
+    <div class="age-card">
+        <div class="age-icon">🔞</div>
+        <div class="age-title">Verifikasi Umur</div>
+        <div class="age-warning">KONTEN DEWASA 18+</div>
+        <div class="age-desc">
+            Halaman ini berisi materi dewasa yang hanya boleh diakses oleh pengguna berusia 18 tahun ke atas.
+            Dengan masuk, Anda menyetujui bahwa Anda sudah dewasa.
+        </div>
+        <div class="age-buttons">
+            <button class="btn-enter" id="enterBtn">Saya 18+ - Masuk</button>
+            <button class="btn-leave" id="leaveBtn">Keluar</button>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN LANDING PAGE -->
+<div class="landing-page" id="landingPage">
+    <div class="header">
+        <span class="logo">🔥 VIPRoom</span>
+        <span class="badge-18">18+ EXCLUSIVE</span>
+    </div>
+
+    <div class="hero">
+        <h1>Rahasia <span>#1</span> Hiburan Dewasa 2026</h1>
+        <p>Akses video panas, chat live dengan model, dan pengalaman private tanpa batas</p>
+        <!-- CTA UTAMA -->
+        <button class="cta-primary" id="mainCtaBtn">
+            ⚡ AKSES RUANG VIP SEKARANG ⚡
+        </button>
+        
+        <!-- Urgency / Countdown -->
+        <div class="urgency-box">
+            <div style="font-size: 13px; margin-bottom: 8px;">🎁 PROMO TERBATAS: GRATIS 7 HARI 🔥</div>
+            <div class="countdown" id="countdownTimer">14:59</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div style="font-size: 11px; margin-top: 10px;">⏰ Hanya <span id="slotLeft">47</span> slot VIP tersisa hari ini!</div>
+        </div>
+    </div>
+
+    <!-- Manfaat / Fitur -->
+    <div class="benefit-grid">
+        <div class="benefit-card">
+            <i class="fas fa-video"></i>
+            <h3>HD + 4K Videos</h3>
+            <p>Streaming mulus tanpa buffering, ribuan video update setiap hari</p>
+        </div>
+        <div class="benefit-card">
+            <i class="fas fa-comment-dots"></i>
+            <h3>Live Chat 24/7</h3>
+            <p>Interaksi langsung dengan model dan member lain</p>
+        </div>
+        <div class="benefit-card">
+            <i class="fas fa-gem"></i>
+            <h3>Private Show</h3>
+            <p>Pengalaman 1-on-1 eksklusif, request apapun</p>
+        </div>
+    </div>
+
+    <!-- LIVE NOTIFIKASI (membuat FOMO) -->
+    <div class="live-notif">
+        <div style="font-weight: bold; margin-bottom: 10px;"><i class="fas fa-circle" style="color:#ff2a6d; font-size: 10px;"></i> Aktivitas Live Member</div>
+        <div id="notificationList">
+            <div class="notif-item">
+                <div class="notif-avatar">👩</div>
+                <div class="notif-text"><span class="notif-name">Aulia_99</span> <span class="notif-action">baru saja bergabung</span></div>
+                <span>🕒 sekarang</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review / Social Proof -->
+    <div class="live-notif">
+        <div style="font-weight: bold; margin-bottom: 10px;">⭐ Member Setia</div>
+        <div class="notif-item">
+            <div class="notif-avatar">💬</div>
+            <div class="notif-text">"Terbaik di Indonesia! Video lengkap dan loading cepet" - <strong>Budi_87</strong></div>
+        </div>
+        <div class="notif-item">
+            <div class="notif-avatar">💬</div>
+            <div class="notif-text">"Live chat nya seru banget, banyak cewek cantik" - <strong>Rizky_23</strong></div>
+        </div>
+        <div class="notif-item">
+            <div class="notif-avatar">💬</div>
+            <div class="notif-text">"Worth it banget, puas sama kontennya" - <strong>Dewi_2024</strong></div>
+        </div>
+    </div>
+
+    <!-- CTA Kedua -->
+    <div style="text-align: center; margin: 30px 0;">
+        <button class="cta-primary" id="secondCtaBtn" style="animation: none; background: linear-gradient(135deg, #a02c5c, #ff2a6d);">
+            🔓 BUKA AKSES SEKARANG 🔓
+        </button>
+    </div>
+
+    <div class="footer">
+        <p>⚠️ Peringatan: Konten dewasa 18+. Verifikasi umur diperlukan. Semua model berusia diatas 21 tahun.</p>
+        <p>© 2026 VIPRoom - Hiburan Dewasa Eksklusif</p>
+    </div>
+
+    <!-- FLOATING CTA (tidak bisa dilewatkan) -->
+    <button class="floating-cta" id="floatingCtaBtn">
+        <span class="floating-text">🔥 AKTIFKAN AKSES VIP 🔥</span>
+        <span class="floating-arrow">→</span>
+    </button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+<script>
+    // === SMARTLINK ADSTERRA (GANTI DENGAN LINK ANDA) ===
+    const SMARTLINK_URL = "https://publisher.adsterra.com/redirect/clicks/YOUR_SMARTLINK_ID_HERE";
+    
+    // ========== AGE GATE HANDLER ==========
+    const ageGate = document.getElementById('ageGate');
+    const landingPage = document.getElementById('landingPage');
+    const enterBtn = document.getElementById('enterBtn');
+    const leaveBtn = document.getElementById('leaveBtn');
+
+    // Cek apakah sudah pernah verifikasi sebelumnya
+    if(localStorage.getItem('ageVerified') === 'true') {
+        ageGate.classList.add('hide');
+        landingPage.classList.add('show');
+        startPageLogics();
+    }
+
+    enterBtn.addEventListener('click', () => {
+        localStorage.setItem('ageVerified', 'true');
+        ageGate.classList.add('hide');
+        landingPage.classList.add('show');
+        startPageLogics();
+        // Event tracking untuk konversi
+        gtagEvent('age_verified');
+    });
+
+    leaveBtn.addEventListener('click', () => {
+        window.location.href = "https://www.google.com";
+    });
+
+    // ========== SEMUA FUNGSI KONVERSI ==========
+    function redirectToSmartlink() {
+        // Buka smartlink di tab baru (agar landing page tetap terbuka)
+        window.open(SMARTLINK_URL, '_blank');
+        // Trigger event untuk analitik jika diperlukan
+        console.log('Smartlink clicked - CPM tinggi untuk traffic dewasa');
+        // Simpan cookie untuk retargeting
+        localStorage.setItem('lastClick', Date.now());
+        showClickToast();
+    }
+
+    // Fungsi untuk menampilkan toast/notifikasi setelah klik
+    function showClickToast() {
+        const toast = document.createElement('div');
+        toast.style.position = 'fixed';
+        toast.style.bottom = '100px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.background = '#ff2a6d';
+        toast.style.color = 'white';
+        toast.style.padding = '10px 20px';
+        toast.style.borderRadius = '50px';
+        toast.style.zIndex = '2000';
+        toast.style.fontWeight = 'bold';
+        toast.style.fontSize = '14px';
+        toast.innerHTML = '🚀 Mengarahkan ke ruang VIP...';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2000);
+    }
+
+    // Pasang event listener ke SEMUA tombol CTA
+    function attachCtaEvents() {
+        const allCtas = document.querySelectorAll('#mainCtaBtn, #secondCtaBtn, #floatingCtaBtn');
+        allCtas.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                redirectToSmartlink();
+            });
+        });
+    }
+
+    // ========== COUNTDOWN + URGENCY ==========
+    let timeLeft = 15 * 60; // 15 menit (900 detik)
+    const countdownEl = document.getElementById('countdownTimer');
+    const progressFill = document.getElementById('progressFill');
+    const slotLeftEl = document.getElementById('slotLeft');
+
+    function updateCountdown() {
+        if(timeLeft <= 0) {
+            // Reset promo (simulasi)
+            timeLeft = 15 * 60;
+            // random slot tersisa
+            const remaining = Math.floor(Math.random() * 30) + 10;
+            if(slotLeftEl) slotLeftEl.innerText = remaining;
+        }
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        countdownEl.innerText = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+        
+        // Progress bar (persentase dari 15 menit)
+        const percent = ((15*60 - timeLeft) / (15*60)) * 100;
+        if(progressFill) progressFill.style.width = percent + '%';
+        
+        timeLeft--;
+        setTimeout(updateCountdown, 1000);
+    }
+
+    // ========== SIMULASI NOTIFIKASI LIVE (FOMO) ==========
+    const userNames = ["Dewi_Sexy", "Joko_Hot", "Mega_99", "Alex_21", "CintaMalam", "Rina_29", "Andre_18"];
+    const actions = ["baru saja bergabung", "memesan private show", "mengirim like 🔥", "mengaktifkan VIP", "menonton live hot"];
+    
+    function addLiveNotif() {
+        const notifContainer = document.getElementById('notificationList');
+        if(!notifContainer) return;
+        const randomName = userNames[Math.floor(Math.random() * userNames.length)];
+        const randomAction = actions[Math.floor(Math.random() * actions.length)];
+        const newNotif = document.createElement('div');
+        newNotif.className = 'notif-item';
+        newNotif.innerHTML = `
+            <div class="notif-avatar">🔥</div>
+            <div class="notif-text"><span class="notif-name">${randomName}</span> <span class="notif-action">${randomAction}</span></div>
+            <span>🕒 baru</span>
+        `;
+        notifContainer.insertBefore(newNotif, notifContainer.firstChild);
+        // Hapus notif ke-6
+        while(notifContainer.children.length > 6) {
+            notifContainer.removeChild(notifContainer.lastChild);
+        }
+    }
+
+    // ========== SLOT TERSISA RANDOM ==========
+    function updateSlotRemaining() {
+        if(slotLeftEl) {
+            const remaining = Math.floor(Math.random() * 25) + 8; // 8-33 slot
+            slotLeftEl.innerText = remaining;
+        }
+        setTimeout(updateSlotRemaining, 45000); // update tiap 45 detik
+    }
+
+    // ========== GOOGLE ANALYTICS (Opsional, untuk tracking konversi) ==========
+    function gtagEvent(action) {
+        // Jika ingin pasang GA, bisa ditambahkan disini
+        console.log("Event:", action);
+    }
+
+    // ========== INTERCEPT EXIT (mouse leave) untuk popup konversi tambahan ==========
+    let exitIntentShown = false;
+    document.addEventListener('mouseleave', (e) => {
+        if(e.clientY <= 0 && !exitIntentShown && landingPage.classList.contains('show')) {
+            exitIntentShown = true;
+            // Popup kecil jangan terlalu mengganggu tapi efektif
+            const exitPopup = document.createElement('div');
+            exitPopup.style.position = 'fixed';
+            exitPopup.style.top = '50%';
+            exitPopup.style.left = '50%';
+            exitPopup.style.transform = 'translate(-50%, -50%)';
+            exitPopup.style.background = 'linear-gradient(145deg, #1a1a2e, #0f0f1a)';
+            exitPopup.style.borderRadius = '30px';
+            exitPopup.style.padding = '25px';
+            exitPopup.style.zIndex = '10001';
+            exitPopup.style.border = '2px solid #ff2a6d';
+            exitPopup.style.width = '280px';
+            exitPopup.style.textAlign = 'center';
+            exitPopup.innerHTML = `
+                <h3 style="color:#ff2a6d;">Jangan lewatkan!</h3>
+                <p style="margin:15px 0;">Akses VIP sedang promo terbatas</p>
+                <button id="exitCtaBtn" style="background:#ff2a6d; border:none; padding:12px 25px; border-radius:50px; color:white; font-weight:bold; width:100%;">🔥 Klaim Sekarang 🔥</button>
+                <button id="closeExitBtn" style="background:transparent; border:none; color:#aaa; margin-top:12px;">Tutup</button>
+            `;
+            document.body.appendChild(exitPopup);
+            document.getElementById('exitCtaBtn')?.addEventListener('click', () => {
+                redirectToSmartlink();
+                exitPopup.remove();
+            });
+            document.getElementById('closeExitBtn')?.addEventListener('click', () => exitPopup.remove());
+        }
+    });
+
+    // ========== START ALL ==========
+    function startPageLogics() {
+        updateCountdown();
+        attachCtaEvents();
+        updateSlotRemaining();
+        // Notif setiap 8 detik
+        setInterval(addLiveNotif, 8000);
+        // Notif awal
+        for(let i=0; i<3; i++) setTimeout(addLiveNotif, i*2000);
+    }
+
+    // Jika sudah masuk tanpa gate
+    if(localStorage.getItem('ageVerified') === 'true') {
+        startPageLogics();
+    }
+</script>
+</body>
+</html>
