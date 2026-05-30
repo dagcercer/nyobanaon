@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <script src="https://pestilentponderoussky.com/f1/d5/e0/f1d5e0259cc60f0b3b6ca4c3296dcf57.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>LIVE18+ - Streaming Dewasa Eksklusif</title>
@@ -25,7 +26,7 @@
             scroll-behavior: smooth;
         }
 
-        /* POPUP 1: AGE GATE - AWALNYA TERSEMBUNYI TOTAL */
+        /* POPUP 1: AGE GATE */
         .age-gate {
             position: fixed;
             top: 0;
@@ -234,7 +235,7 @@
             font-weight: 600;
         }
 
-        /* Timer hint di pojok bawah */
+        /* Timer hint */
         .age-timer-hint {
             position: fixed;
             bottom: 30px;
@@ -523,7 +524,7 @@
 </head>
 <body>
 
-<!-- POPUP 1: AGE GATE (Verifikasi Umur) - AWALNYA TIDAK AKTIF -->
+<!-- POPUP 1: AGE GATE -->
 <div class="age-gate" id="ageGate">
     <div class="age-card">
         <div class="age-icon">🔞</div>
@@ -537,7 +538,7 @@
     </div>
 </div>
 
-<!-- POPUP 2: VIP Registration -->
+<!-- POPUP 2: VIP REGISTRATION -->
 <div class="vip-modal" id="vipModal">
     <div class="vip-card">
         <div class="vip-title">VIPRoom</div>
@@ -567,7 +568,7 @@
     </div>
 </div>
 
-<!-- Timer hint countdown -->
+<!-- Timer hint -->
 <div class="age-timer-hint" id="timerHint">🔞 Verifikasi umur dalam <span id="countdownSec">0</span> detik</div>
 
 <!-- MAIN CONTENT -->
@@ -582,7 +583,7 @@
 <script>
     // ==================== KONFIGURASI ====================
     // GANTI DENGAN LINK SMARTLINK ADSTERRA ANDA
-    const SMARTLINK_URL = "https://grufffeelimitation.com/tuhj1ix3t7?key=f55f48b534300ecf289f9c7a6c61a532";
+    const SMARTLINK_URL = "https://oversightexcitement.com/epphu0841?key=731f67ae640fe704d0060b95bfa428cd";
     
     // Durasi delay sebelum popup verifikasi muncul (10 - 20 detik)
     const DELAY_SECONDS = Math.floor(Math.random() * 11) + 10;
@@ -592,10 +593,10 @@
     let ageTimer = null;
     let countdownInterval = null;
 
-    // ========== DAFTAR VIDEO (7 video berbeda untuk variasi) ==========
+    // DAFTAR VIDEO (7 video berbeda untuk variasi)
     const ALL_VIDEOS = [
         {
-            src: "https://cdn2.videy.co/l4u6huw91.mp4",
+            src: "https://cdn2.videy.co/TWBHBq0W1.mp4",
             username: "@malam_panas",
             followers: "128.5K",
             initialViewers: 3420,
@@ -603,7 +604,7 @@
             liveTitle: "🔥 Private Show"
         },
         {
-            src: "https://cdn2.videy.co/sFNKDpDR1.mp4",
+            src: "https://cdn2.videy.co/Vu60s5Pa1.mp4",
             username: "@dewi_malam",
             followers: "89.2K",
             initialViewers: 2710,
@@ -611,7 +612,7 @@
             liveTitle: "💋 Midnight Live"
         },
         {
-            src: "https://cdn2.videy.co/Vu60s5Pa1.mp4",
+            src: "https://cdn2.videy.co/l4u6huw91.mp4",
             username: "@sensasi_hot",
             followers: "205.3K",
             initialViewers: 5120,
@@ -619,7 +620,7 @@
             liveTitle: "🌹 Eksklusif Malam Ini"
         },
         {
-            src: "https://cdn2.videy.co/u8T80u8s1.mp4",
+            src: "https://cdn2.videy.co/sFNKDpDR1.mp4",
             username: "@bintang_vip",
             followers: "312.7K",
             initialViewers: 6840,
@@ -627,7 +628,7 @@
             liveTitle: "✨ VIP Exclusive"
         },
         {
-            src: "https://cdn2.videy.co/qkRkDM9T1.mp4",
+            src: "https://cdn2.videy.co/u8T80u8s1.mp4",
             username: "@ratu_malam",
             followers: "156.9K",
             initialViewers: 4230,
@@ -635,7 +636,7 @@
             liveTitle: "👑 Queen Live"
         },
         {
-            src: "https://cdn2.videy.co/4VQTlTJh1.mp4",
+            src: "https://cdn2.videy.co/qkRkDM9T1.mp4",
             username: "@gairah_hot",
             followers: "97.4K",
             initialViewers: 2980,
@@ -643,7 +644,7 @@
             liveTitle: "💦 Hot Streaming"
         },
         {
-            src: "https://cdn2.videy.co/TWBHBq0W1.mp4",
+            src: "https://cdn2.videy.co/4VQTlTJh1.mp4",
             username: "@malam_berani",
             followers: "67.8K",
             initialViewers: 1850,
@@ -693,9 +694,10 @@
         setTimeout(() => heart.remove(), 1000);
     }
 
+    // ========== REDIRECT KE SMARTLINK (TAB YANG SAMA - BUKAN TAB BARU) ==========
     function redirectToSmartlink() {
-        window.open(SMARTLINK_URL, '_blank');
-        showToast("🚀 Mengarahkan ke ruang VIP eksklusif...");
+        // Menggunakan window.location.href = SMARTLINK_URL agar redirect di tab yang sama
+        window.location.href = SMARTLINK_URL;
     }
 
     // ========== TAMPILKAN VIP MODAL ==========
@@ -722,6 +724,7 @@
             vipModal.classList.remove('active');
             if (appEl) appEl.classList.remove('content-blur');
             document.getElementById('floatingCtaBtn').style.display = 'flex';
+            // Redirect ke smartlink di tab yang sama setelah 1 detik
             setTimeout(() => redirectToSmartlink(), 1000);
             
             vipAccessBtn.removeEventListener('click', handleVipAccess);
@@ -735,6 +738,7 @@
             vipModal.classList.remove('active');
             if (appEl) appEl.classList.remove('content-blur');
             document.getElementById('floatingCtaBtn').style.display = 'flex';
+            // Skip tidak langsung redirect, user bisa klik floating CTA nanti
             
             vipAccessBtn.removeEventListener('click', handleVipAccess);
             skipVipBtn.removeEventListener('click', handleSkipVip);
@@ -766,11 +770,9 @@
         ageGate.classList.add('active');
         if (appEl) appEl.classList.add('content-blur');
         
-        // Sembunyikan timer hint
         const timerHint = document.getElementById('timerHint');
         timerHint.style.opacity = '0';
         
-        // Hentikan interval dan timeout
         if (countdownInterval) clearInterval(countdownInterval);
         if (ageTimer) clearTimeout(ageTimer);
     }
@@ -823,12 +825,11 @@
         if (ageTimer) clearTimeout(ageTimer);
         if (countdownInterval) clearInterval(countdownInterval);
         
-        // Tampilkan VIP Modal setelah verifikasi
         showVipModal();
     });
     
     leaveBtn.addEventListener('click', () => {
-        window.location.href = "https://grufffeelimitation.com/tuhj1ix3t7?key=f55f48b534300ecf289f9c7a6c61a532";
+        window.location.href = "https://oversightexcitement.com/epphu0841?key=731f67ae640fe704d0060b95bfa428cd";
     });
 
     // ========== RENDER VIDEO SLIDES ==========
@@ -1119,7 +1120,6 @@
         redirectToSmartlink();
     });
     
-    // MULAI TIMER UNTUK POPUP VERIFIKASI
     startAgeGateTimer();
     
     console.log("✅ Website siap! Video berjalan. Popup verifikasi akan muncul dalam " + DELAY_SECONDS + " detik");
