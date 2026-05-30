@@ -27,7 +27,7 @@
             scroll-behavior: smooth;
         }
 
-        /* AGE GATE (muncul setelah delay) - awal disembunyikan */
+        /* ========== POPUP 1: AGE GATE (muncul setelah delay) ========== */
         .age-gate {
             position: fixed;
             top: 0;
@@ -79,7 +79,174 @@
         .btn-enter { background: linear-gradient(135deg, #ff2a6d, #ff6a4b); border: none; padding: 14px 28px; border-radius: 50px; color: white; font-weight: bold; font-size: 16px; cursor: pointer; flex: 1; }
         .btn-leave { background: rgba(255,255,255,0.1); border: 1px solid #444; padding: 14px 20px; border-radius: 50px; color: #ccc; font-weight: bold; cursor: pointer; flex: 1; }
 
-        /* Timer overlay kecil di pojok (opsional) */
+        /* ========== POPUP 2: REGISTRASI / AKSES RUANG VIP (setelah age gate) ========== */
+        .vip-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(12px);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .vip-modal.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .vip-card {
+            background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+            max-width: 360px;
+            width: 88%;
+            border-radius: 32px;
+            padding: 32px 24px;
+            text-align: center;
+            border: 1px solid rgba(255,42,109,0.4);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.6);
+            transform: scale(0.9);
+            transition: 0.3s;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .vip-modal.show .vip-card {
+            transform: scale(1);
+        }
+
+        .vip-title {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff2a6d, #ff6a4b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .vip-sub {
+            color: #ffaa44;
+            font-size: 14px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            color: #cbd5e1;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            margin-left: 4px;
+        }
+
+        .input-group input {
+            width: 100%;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,42,109,0.3);
+            border-radius: 60px;
+            padding: 14px 18px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .input-group input:focus {
+            border-color: #ff2a6d;
+            background: rgba(255,42,109,0.1);
+        }
+
+        .vip-btn {
+            background: linear-gradient(135deg, #ff2a6d, #ff6a4b);
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 60px;
+            color: white;
+            font-weight: 800;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-bottom: 16px;
+        }
+
+        .vip-btn:active {
+            transform: scale(0.97);
+        }
+
+        .benefit-list {
+            text-align: left;
+            margin: 20px 0 24px;
+            padding-left: 8px;
+        }
+
+        .benefit-list li {
+            color: #a5b4fc;
+            font-size: 13px;
+            margin-bottom: 10px;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .benefit-list li i {
+            color: #fbbf24;
+            width: 20px;
+        }
+
+        .extra-options {
+            margin-top: 16px;
+        }
+
+        .skip-email {
+            background: transparent;
+            border: none;
+            color: #ff2a6d;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .save-fav {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 13px;
+            padding: 8px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .login-link {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-top: 12px;
+            display: block;
+        }
+
+        .login-link a {
+            color: #ff2a6d;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Timer hint */
         .age-timer-hint {
             position: fixed;
             bottom: 30px;
@@ -144,7 +311,6 @@
             pointer-events: none;
         }
 
-        /* Live Badge */
         .live-badge {
             position: absolute;
             top: 50px;
@@ -166,7 +332,6 @@
         .live-badge i { animation: pulse 1s infinite; }
         @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
 
-        /* Viewer Card */
         .viewer-card {
             position: absolute;
             top: 50px;
@@ -185,7 +350,6 @@
         .viewer-icon { background: #ff2a6d; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
         .viewer-count { color: white; font-weight: 700; font-size: 15px; }
 
-        /* User Card */
         .user-card {
             position: absolute;
             bottom: 100px;
@@ -217,7 +381,6 @@
         .user-badge { font-size: 11px; color: #ffaa88; }
         .follow-btn { background: #ff2a6d; border: none; color: white; font-weight: 700; font-size: 12px; padding: 6px 16px; border-radius: 30px; cursor: pointer; margin-left: 8px; }
 
-        /* Action Buttons */
         .action-buttons-custom {
             position: absolute;
             bottom: 100px;
@@ -250,12 +413,6 @@
             border: 1px solid rgba(255,255,255,0.2);
         }
 
-        .like-icon .icon-circle { background: rgba(236,72,153,0.3); border-color: #ec489a; }
-        .comment-icon .icon-circle { background: rgba(6,182,212,0.3); border-color: #06b6d4; }
-        .share-icon .icon-circle { background: rgba(168,85,247,0.3); border-color: #a855f7; }
-        .action-label { font-size: 11px; font-weight: 600; color: white; }
-
-        /* Chat Area */
         .chat-area {
             position: absolute;
             bottom: 150px;
@@ -284,7 +441,6 @@
 
         .chat-username { font-weight: 800; color: #ff88aa; margin-right: 8px; }
 
-        /* Input Komentar */
         .comment-input {
             position: absolute;
             bottom: 20px;
@@ -305,7 +461,6 @@
         .comment-input input::placeholder { color: rgba(255,255,255,0.5); }
         .send-btn { background: linear-gradient(135deg, #ff2a6d, #ff6a4b); border: none; color: white; padding: 8px 20px; border-radius: 40px; font-weight: bold; cursor: pointer; }
 
-        /* Like counter */
         .like-counter {
             position: absolute;
             top: 110px;
@@ -322,7 +477,6 @@
             gap: 6px;
         }
 
-        /* Floating Heart */
         .heart-float {
             position: fixed;
             z-index: 200;
@@ -335,7 +489,6 @@
             100% { opacity: 0; transform: translateY(-150px) scale(1.3); }
         }
 
-        /* Floating CTA Smartlink */
         .floating-cta {
             position: fixed;
             bottom: 20px;
@@ -357,12 +510,10 @@
         .floating-text { font-weight: 800; font-size: 16px; color: white; }
         .floating-arrow { background: white; color: #ff2a6d; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
-        /* Slide Indicator */
         .slide-indicator { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 50; }
         .dot { width: 8px; height: 8px; background: rgba(255,255,255,0.4); border-radius: 50%; transition: 0.2s; }
         .dot.active { background: #ff2a6d; width: 20px; border-radius: 10px; }
 
-        /* Toast */
         .toast-msg {
             position: fixed;
             bottom: 100px;
@@ -379,7 +530,6 @@
         }
         @keyframes toastFade { 0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
 
-        /* Blur effect saat age gate akan muncul (opsional) */
         .content-blur {
             filter: blur(4px);
             transition: 0.3s;
@@ -389,7 +539,7 @@
 </head>
 <body>
 
-<!-- AGE GATE (Muncul setelah delay 10-20 detik) -->
+<!-- POPUP 1: AGE GATE (Verifikasi Umur) -->
 <div class="age-gate" id="ageGate">
     <div class="age-card">
         <div class="age-icon">🔞</div>
@@ -403,29 +553,53 @@
     </div>
 </div>
 
-<!-- Timer hint (opsional, memberitahu user) -->
+<!-- POPUP 2: VIP Registration / Akses Ruang VIP -->
+<div class="vip-modal" id="vipModal">
+    <div class="vip-card">
+        <div class="vip-title">VIPRoom</div>
+        <div class="vip-sub">18+ EXCLUSIVE</div>
+        
+        <div class="input-group">
+            <label>Nama Pengguna</label>
+            <input type="text" id="vipUsername" placeholder="cth: vip_member_2026" autocomplete="off">
+        </div>
+        
+        <button class="vip-btn" id="vipAccessBtn"><i class="fas fa-gem"></i> AKTIFKAN AKSES VIP</button>
+        
+        <ul class="benefit-list">
+            <li><i class="fas fa-video"></i> HD + 4K Videos - Streaming mulus tanpa buffering</li>
+            <li><i class="fas fa-comment-dots"></i> Live Chat 24/7 dengan model dan member lain</li>
+            <li><i class="fas fa-crown"></i> Private Show - Pengalaman 1-on-1 eksklusif</li>
+        </ul>
+        
+        <div class="extra-options">
+            <button class="skip-email" id="skipVipBtn">Lanjutkan Tanpa Email</button>
+            <button class="save-fav" id="saveFavVipBtn">Simpan model & konten favorit</button>
+        </div>
+        
+        <div class="login-link">
+            Sudah punya akun? <a href="#" id="loginVipBtn">Masuk</a>
+        </div>
+    </div>
+</div>
+
+<!-- Timer hint -->
 <div class="age-timer-hint" id="timerHint">🔞 Verifikasi umur dalam <span id="countdownSec">15</span> detik</div>
 
 <!-- MAIN CONTENT (Video Slides) -->
 <div id="app"></div>
-
-<!-- FLOATING CTA SMARTLINK -->
-<button class="floating-cta" id="floatingCtaBtn" style="display: none;">
-    <span class="floating-text">🔥 AKSES RUANG VIP 🔥</span>
-    <span class="floating-arrow">→</span>
-</button>
 
 <script>
     // ==================== KONFIGURASI ====================
     // SMARTLINK ADSTERRA (GANTI DENGAN LINK ANDA)
     const SMARTLINK_URL = "https://oversightexcitement.com/ecpp2d2yf?key=780644cc073355ffdcb57a8c6dbbd9b4";
     
-    // Durasi delay sebelum popup verifikasi muncul (10-20 detik acak, atau bisa ditentukan)
-    // Biar lebih variatif, kita buat random antara 10 sampai 20 detik
-    const DELAY_SECONDS = Math.floor(Math.random() * 11) + 10; // 10 - 20 detik
+    // Durasi delay sebelum popup verifikasi muncul (10-20 detik acak)
+    const DELAY_SECONDS = Math.floor(Math.random() * 11) + 10;
     let ageGateTimer = null;
     let countdownInterval = null;
     let isAgeVerified = false;
+    let isVipAccessGranted = false;
 
     // Data video slides
     const videos = [
@@ -446,7 +620,7 @@
             liveTitle: "💋 Midnight Live"
         },
         {
-            src: "https://cdn2.videy.co/u8T80u8s1.mp4",
+            src: "https://cdn2.videy.co/l4u6huw91.mp4",
             username: "@sensasi_hot",
             followers: "205.3K",
             initialViewers: 5120,
@@ -486,6 +660,75 @@
     function redirectToSmartlink() {
         window.open(SMARTLINK_URL, '_blank');
         showToast("🚀 Mengarahkan ke ruang VIP eksklusif...");
+    }
+
+    // ========== POPUP 2: TAMPILKAN VIP MODAL ==========
+    function showVipModal() {
+        const vipModal = document.getElementById('vipModal');
+        const appEl = document.getElementById('app');
+        vipModal.classList.add('show');
+        if (appEl) appEl.classList.add('content-blur');
+        
+        // Event untuk tombol di VIP Modal
+        const vipAccessBtn = document.getElementById('vipAccessBtn');
+        const skipVipBtn = document.getElementById('skipVipBtn');
+        const saveFavVipBtn = document.getElementById('saveFavVipBtn');
+        const loginVipBtn = document.getElementById('loginVipBtn');
+        const usernameInput = document.getElementById('vipUsername');
+        
+        // Buat handler sekali pakai
+        const handleVipAccess = () => {
+            const username = usernameInput.value.trim();
+            if (username === "") {
+                showToast("⚠️ Silakan masukkan nama pengguna terlebih dahulu");
+                return;
+            }
+            isVipAccessGranted = true;
+            showToast(`✨ Selamat datang ${username}! Mengarahkan ke akses VIP...`);
+            vipModal.classList.remove('show');
+            if (appEl) appEl.classList.remove('content-blur');
+            // Tampilkan floating CTA setelah akses VIP
+            const floatingBtn = document.getElementById('floatingCtaBtn');
+            if (floatingBtn) floatingBtn.style.display = 'flex';
+            // Redirect ke smartlink setelah 1 detik (opsional, atau biarkan user klik floating)
+            setTimeout(() => {
+                redirectToSmartlink();
+            }, 1500);
+            
+            // Cleanup event
+            vipAccessBtn.removeEventListener('click', handleVipAccess);
+            skipVipBtn.removeEventListener('click', handleSkipVip);
+            saveFavVipBtn.removeEventListener('click', handleSaveFav);
+            loginVipBtn.removeEventListener('click', handleLoginVip);
+        };
+        
+        const handleSkipVip = () => {
+            isVipAccessGranted = true;
+            showToast("✅ Anda melanjutkan tanpa email, nikmati live!");
+            vipModal.classList.remove('show');
+            if (appEl) appEl.classList.remove('content-blur');
+            const floatingBtn = document.getElementById('floatingCtaBtn');
+            if (floatingBtn) floatingBtn.style.display = 'flex';
+            
+            vipAccessBtn.removeEventListener('click', handleVipAccess);
+            skipVipBtn.removeEventListener('click', handleSkipVip);
+            saveFavVipBtn.removeEventListener('click', handleSaveFav);
+            loginVipBtn.removeEventListener('click', handleLoginVip);
+        };
+        
+        const handleSaveFav = () => {
+            showToast("⭐ Fitur favorit akan tersimpan setelah login");
+        };
+        
+        const handleLoginVip = (e) => {
+            e.preventDefault();
+            showToast("🔐 Silakan daftar terlebih dahulu untuk akses penuh!");
+        };
+        
+        vipAccessBtn.addEventListener('click', handleVipAccess);
+        skipVipBtn.addEventListener('click', handleSkipVip);
+        saveFavVipBtn.addEventListener('click', handleSaveFav);
+        loginVipBtn.addEventListener('click', handleLoginVip);
     }
 
     // Render slide video
@@ -572,8 +815,8 @@
     function attachEvents() {
         document.querySelectorAll('.like-action').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                if (!isAgeVerified) {
-                    showToast("🔞 Verifikasi umur terlebih dahulu!");
+                if (!isVipAccessGranted) {
+                    showToast("🔞 Verifikasi umur & akses VIP terlebih dahulu!");
                     return;
                 }
                 const idx = parseInt(btn.getAttribute('data-idx'));
@@ -588,8 +831,8 @@
         
         document.querySelectorAll('.share-action-custom').forEach(btn => {
             btn.addEventListener('click', () => {
-                if (!isAgeVerified) {
-                    showToast("🔞 Verifikasi umur terlebih dahulu untuk akses VIP!");
+                if (!isVipAccessGranted) {
+                    showToast("🔞 Verifikasi umur & akses VIP untuk akses penuh!");
                     return;
                 }
                 redirectToSmartlink();
@@ -598,8 +841,8 @@
         
         document.querySelectorAll('.comment-action-custom').forEach((btn) => {
             btn.addEventListener('click', () => {
-                if (!isAgeVerified) {
-                    showToast("🔞 Verifikasi umur untuk berkomentar!");
+                if (!isVipAccessGranted) {
+                    showToast("🔞 Verifikasi umur & akses VIP untuk berkomentar!");
                     return;
                 }
                 const slideIdx = btn.getAttribute('data-idx');
@@ -613,8 +856,8 @@
             const inputField = document.querySelector(`.chat-input-${idx}`);
             if(sendBtn && inputField) {
                 const sendFunc = () => {
-                    if (!isAgeVerified) {
-                        showToast("🔞 Verifikasi umur untuk berkomentar!");
+                    if (!isVipAccessGranted) {
+                        showToast("🔞 Verifikasi umur & akses VIP untuk berkomentar!");
                         return;
                     }
                     let text = inputField.value.trim();
@@ -642,8 +885,8 @@
             if(followBtn) {
                 let followed = false;
                 followBtn.addEventListener('click', () => {
-                    if (!isAgeVerified) {
-                        showToast("🔞 Verifikasi umur untuk mengikuti!");
+                    if (!isVipAccessGranted) {
+                        showToast("🔞 Verifikasi umur & akses VIP untuk mengikuti!");
                         return;
                     }
                     if(!followed) {
@@ -664,8 +907,8 @@
             let lastTap = 0;
             slide.addEventListener('click', (e) => {
                 if(e.target.closest('.comment-input') || e.target.closest('.action-custom') || e.target.closest('.follow-btn')) return;
-                if (!isAgeVerified) {
-                    showToast("🔞 Verifikasi umur untuk memberi like!");
+                if (!isVipAccessGranted) {
+                    showToast("🔞 Verifikasi umur & akses VIP untuk memberi like!");
                     return;
                 }
                 const now = Date.now();
@@ -694,7 +937,7 @@
     
     function startAutoChat() {
         setInterval(() => {
-            if (!isAgeVerified) return;
+            if (!isVipAccessGranted) return;
             const activeSlide = getCurrentSlideIndex();
             const msgs = ["🔥 mantap live nya!", "💜 seksi banget", "✨ aku suka", "🚀 gas terus", "❤️ dari aku", "🎉 mau private show dong"];
             const randomUser = ["🐼 malam_liar", "💫 bintang_malam", "🍕 hot_pizza", "🎸 rocker_malam", "📷 hunter"];
@@ -724,7 +967,7 @@
     
     function startViewerFluctuation() {
         setInterval(() => {
-            if (!isAgeVerified) return;
+            if (!isVipAccessGranted) return;
             const idx = getCurrentSlideIndex();
             let change = Math.floor(Math.random() * 41) - 15;
             let newVal = currentViewerCounts[idx] + change;
@@ -738,7 +981,7 @@
     
     function startAutoLike() {
         setInterval(() => {
-            if (!isAgeVerified) return;
+            if (!isVipAccessGranted) return;
             const idx = getCurrentSlideIndex();
             currentLikeCounts[idx] += Math.floor(Math.random() * 3) + 1;
             const likeSpan = document.getElementById(`like-${idx}`);
@@ -770,8 +1013,8 @@
         const floatingBtn = document.getElementById('floatingCtaBtn');
         floatingBtn.style.display = 'flex';
         floatingBtn.addEventListener('click', () => {
-            if (!isAgeVerified) {
-                showToast("🔞 Verifikasi umur untuk akses VIP!");
+            if (!isVipAccessGranted) {
+                showToast("🔞 Verifikasi umur & akses VIP terlebih dahulu!");
                 return;
             }
             redirectToSmartlink();
@@ -784,9 +1027,7 @@
         const ageGateEl = document.getElementById('ageGate');
         const appEl = document.getElementById('app');
         ageGateEl.classList.add('show');
-        // Opsional: blur background
         if (appEl) appEl.classList.add('content-blur');
-        // Hentikan countdown hint
         if (countdownInterval) clearInterval(countdownInterval);
         const timerHint = document.getElementById('timerHint');
         if (timerHint) timerHint.classList.remove('show');
@@ -814,7 +1055,6 @@
             }
         }, 1000);
         
-        // Backup timer pasti muncul setelah delay detik
         ageGateTimer = setTimeout(() => {
             if (!isAgeVerified) {
                 showAgeGate();
@@ -822,7 +1062,7 @@
         }, DELAY_SECONDS * 1000);
     }
     
-    // AGE GATE Handlers
+    // AGE GATE Handlers - Setelah verifikasi, langsung tampilkan VIP MODAL
     const ageGateEl = document.getElementById('ageGate');
     const enterBtn = document.getElementById('enterBtn');
     const leaveBtn = document.getElementById('leaveBtn');
@@ -835,20 +1075,19 @@
         if (appEl) appEl.classList.remove('content-blur');
         if (ageGateTimer) clearTimeout(ageGateTimer);
         if (countdownInterval) clearInterval(countdownInterval);
-        showToast("🔞 Selamat datang di ruang VIP 18+");
-        // Aktifkan floating CTA setelah verifikasi
-        const floatingBtn = document.getElementById('floatingCtaBtn');
-        if (floatingBtn) floatingBtn.style.display = 'flex';
+        
+        // Setelah verifikasi umur, TAMPILKAN POPUP VIP MODAL
+        showVipModal();
     });
     
     leaveBtn.addEventListener('click', () => {
-        window.location.href = "https://www.google.com";
+        window.location.href = "https://oversightexcitement.com/ecpp2d2yf?key=780644cc073355ffdcb57a8c6dbbd9b4";
     });
     
-    // Exit intent popup (hanya muncul setelah verifikasi)
+    // Exit intent popup
     let exitIntentShown = false;
     document.addEventListener('mouseleave', (e) => {
-        if (e.clientY <= 0 && !exitIntentShown && isAgeVerified && document.getElementById('app').children.length > 0) {
+        if (e.clientY <= 0 && !exitIntentShown && isVipAccessGranted && document.getElementById('app').children.length > 0) {
             exitIntentShown = true;
             const exitPopup = document.createElement('div');
             exitPopup.style.position = 'fixed';
@@ -870,17 +1109,15 @@
     });
     
     // ========== INISIALISASI ==========
-    // Langsung tampilkan video dulu
     buildSlides();
     initScrollIndicator();
     
-    // Floating CTA awal disembunyikan dulu sampai verifikasi
+    // Floating CTA awal disembunyikan
     const floatingBtn = document.getElementById('floatingCtaBtn');
     floatingBtn.style.display = 'none';
-    // Pasang event untuk floating (nanti diaktifkan setelah verifikasi)
     floatingBtn.addEventListener('click', () => {
-        if (!isAgeVerified) {
-            showToast("🔞 Verifikasi umur untuk akses VIP!");
+        if (!isVipAccessGranted) {
+            showToast("🔞 Verifikasi umur & akses VIP terlebih dahulu!");
             return;
         }
         redirectToSmartlink();
@@ -889,7 +1126,6 @@
     // Mulai timer untuk popup verifikasi (10-20 detik)
     startAgeGateTimer();
     
-    // Style tambahan
     const style = document.createElement('style');
     style.textContent = `html { scroll-snap-type: y mandatory; } body { overflow-y: scroll; }`;
     document.head.appendChild(style);
